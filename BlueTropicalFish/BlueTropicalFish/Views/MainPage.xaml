@@ -6,6 +6,31 @@
 
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
         <Label Text="Welcome to Xamarin Forms and Prism!" />
+        <Button Text="Scan" Command="{Binding ScanCommand}"/>
+        <Image Source="{Binding Img}" />
+        <ListView ItemsSource="{Binding ScanedDevices}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <!--<TextCell Text="{Binding Name}"/>-->
+                    <!--<ImageCell Height="30" Text="{Binding Name}" Detail="{Binding Detail}" ImageSource="{Binding ImageUrl}"/>-->
+                    <!--
+                    <ViewCell>
+                        <StackLayout BackgroundColor="#eee"
+                        Orientation="Vertical">
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="{Binding ImageUri}" />
+                                <Label Text="{Binding Name}"
+                                TextColor="#f35e20" />
+                                <Label Text="{Binding Detail}"
+                                HorizontalOptions="EndAndExpand"
+                                TextColor="#503026" />
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                    -->
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </StackLayout>
 
 </ContentPage>
