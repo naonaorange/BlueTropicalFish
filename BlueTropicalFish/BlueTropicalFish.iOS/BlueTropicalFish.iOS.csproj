@@ -223,5 +223,10 @@
       <Name>BlueTropicalFish</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="..\BlueTropicalFish\Resources\bt.png">
+      <Link>Resources\bt.png</Link>
+    </BundleResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

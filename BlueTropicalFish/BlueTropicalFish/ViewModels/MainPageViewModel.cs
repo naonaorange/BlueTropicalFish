@@ -27,19 +27,18 @@ namespace BlueTropicalFish.ViewModels
             set { SetProperty(ref debugString, value); }
         }
 
-        private ImageSource img;
-        public ImageSource Img
-        {
-            get { return img; }
-            set { SetProperty(ref img, value); }
-        }
-
         public MainPageViewModel(INavigationService navigationService) 
             : base (navigationService)
         {
             Title = "Main Page";
             DebugString = "Debug";
             ScanCommand = new DelegateCommand(Scan);
+
+            ScanedDevices = new ObservableCollection<PeripheralDevice>();
+            var d = new PeripheralDevice();
+            d.Name = "hoge";
+            d.Detail = "detail";
+            ScanedDevices.Add(d);
         }
 
         public void Scan()
@@ -60,5 +59,11 @@ namespace BlueTropicalFish.ViewModels
     {
         public string Name { get; set; }
         public string Detail { get; set; }
+        public ImageSource Img { get; set; }
+
+        public PeripheralDevice()
+        {
+            Img = ImageSource.FromFile("bt.png");
+        }
     }
 }

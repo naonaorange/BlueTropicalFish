@@ -10,7 +10,8 @@
         <ListView ItemsSource="{Binding ScanedDevices}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Name}"/>
+                    <!--<TextCell Text="{Binding Name}"/>-->
+                    <ImageCell Text="{Binding Name}" Detail="{Binding Detail}" ImageSource="{Binding Img}" />
                     <!--
                     <ViewCell>
                         <StackLayout BackgroundColor="#eee"

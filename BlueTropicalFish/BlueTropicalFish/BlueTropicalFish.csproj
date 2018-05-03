@@ -5,6 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\bt.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\bt.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Plugin.BluetoothLE" Version="6.0.0" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
     <PackageReference Include="Prism.Autofac.Forms" Version="7.0.0.396" />
