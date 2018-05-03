@@ -43,14 +43,12 @@ namespace BlueTropicalFish.ViewModels
 
             ScanCommand = new DelegateCommand(Scan);
 
-            Img = ImageSource.FromResource("BlueTropicalFish.bt2.png");
-
             ScanedDevices = new ObservableCollection<PeripheralDevice>();
             var d = new PeripheralDevice();
             d.Name = "hoge";
             d.Detail = "detail";
             //d.ImageUri = ImageSource.FromResource("BlueTropicalFish.Resources.bt.jpg");
-            d.ImageUri = ImageSource.FromUri(new Uri("https://xamarin.com/content/images/pages/forms/example-app.png"));
+            //d.ImageUri = ImageSource.FromUri(new Uri("https://xamarin.com/content/images/pages/forms/example-app.png"));
             
             ScanedDevices.Add(d);
 
@@ -58,7 +56,7 @@ namespace BlueTropicalFish.ViewModels
             d.Name = "fuga";
             d.Detail = "detail";
             //d.ImageUri = ImageSource.FromResource("BlueTropicalFish.Resources.bt.jpg");
-            d.ImageUri = ImageSource.FromUri(new Uri("https://xamarin.com/content/images/pages/forms/example-app.png"));
+            //d.ImageUri = ImageSource.FromUri(new Uri("https://xamarin.com/content/images/pages/forms/example-app.png"));
             ScanedDevices.Add(d);
         }
 
@@ -68,7 +66,7 @@ namespace BlueTropicalFish.ViewModels
             d.Name = "fuga";
             d.Detail = "detail";
             //d.ImageUri = ImageSource.FromResource("BlueTropicalFish.Resources.bt.jpg");
-            d.ImageUri = ImageSource.FromUri(new Uri("https://xamarin.com/content/images/pages/forms/example-app.png"));
+            //d.ImageUri = ImageSource.FromUri(new Uri("https://xamarin.com/content/images/pages/forms/example-app.png"));
             ScanedDevices.Add(d);
 
             /*
@@ -97,7 +95,7 @@ namespace BlueTropicalFish.ViewModels
     {
         public string Name { get; set; }
         public string Detail { get; set; }
-        public ImageSource ImageUri { get; set; }
+        //public ImageSource ImageUri { get; set; }
         //public string ImageUri { get; set; }
 
         

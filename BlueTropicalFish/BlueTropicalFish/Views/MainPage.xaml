@@ -7,12 +7,10 @@
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
         <Label Text="Welcome to Xamarin Forms and Prism!" />
         <Button Text="Scan" Command="{Binding ScanCommand}"/>
-        <Image Source="{Binding Img}" />
         <ListView ItemsSource="{Binding ScanedDevices}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <!--<TextCell Text="{Binding Name}"/>-->
-                    <!--<ImageCell Height="30" Text="{Binding Name}" Detail="{Binding Detail}" ImageSource="{Binding ImageUrl}"/>-->
+                    <TextCell Text="{Binding Name}"/>
                     <!--
                     <ViewCell>
                         <StackLayout BackgroundColor="#eee"
