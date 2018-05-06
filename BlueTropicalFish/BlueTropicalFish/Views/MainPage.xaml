@@ -10,23 +10,20 @@
         <ListView ItemsSource="{Binding ScanedDevices}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <!--<TextCell Text="{Binding Name}"/>-->
-                    <ImageCell Text="{Binding Name}" Detail="{Binding Detail}" ImageSource="{Binding Img}" />
-                    <!--
+                    <!--<ImageCell Text="{Binding Name}" Detail="{Binding Detail}" ImageSource="{Binding Img}" />-->
                     <ViewCell>
-                        <StackLayout BackgroundColor="#eee"
-                        Orientation="Vertical">
-                            <StackLayout Orientation="Horizontal">
-                                <Image Source="{Binding ImageUri}" />
-                                <Label Text="{Binding Name}"
-                                TextColor="#f35e20" />
-                                <Label Text="{Binding Detail}"
-                                HorizontalOptions="EndAndExpand"
-                                TextColor="#503026" />
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="{Binding Img}" />
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="{Binding Name}" />
+                                <Label Text="{Binding Detail}" />
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" HorizontalOptions="EndAndExpand">
+                                <Label Text="RSSI" />
+                                <Label Text="RSSI" />
                             </StackLayout>
                         </StackLayout>
                     </ViewCell>
-                    -->
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
