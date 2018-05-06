@@ -4,7 +4,16 @@
              x:Class="BlueTropicalFish.Views.MainPage"
              Title="{Binding Title}">
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <Button Text="Scan" Command="{Binding ScanCommand}"/>
+        <Button Command="{Binding ScanCommand}">
+            <Button.Triggers>
+                <DataTrigger TargetType="Button" Binding="{Binding IsScanning}" Value="True">
+                    <Setter Property="Text" Value="Stop Scan" />
+                </DataTrigger>
+                <DataTrigger TargetType="Button" Binding="{Binding IsScanning}" Value="False">
+                    <Setter Property="Text" Value="Scan" />
+                </DataTrigger>
+            </Button.Triggers>
+        </Button>
         <ListView ItemsSource="{Binding ScanedDevices}">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -14,10 +23,10 @@
                                 <Image Source="{Binding Img}" />
                                 <StackLayout Orientation="Vertical">
                                     <Label Text="{Binding Name}" />
-                                    <Label Text="{Binding Uuid}" />
+                                    <Label Text="{Binding Uuid}, StringFormat='UUID: {0}'}" />
                                 </StackLayout>
                                 <StackLayout Orientation="Vertical" HorizontalOptions="EndAndExpand">
-                                    <Label Text="{Binding Rssi}" />
+                                    <Label Text="{Binding Rssi, StringFormat='RSSI: {0}'}" />
                                 </StackLayout>
                             </StackLayout>
                         </Frame>

@@ -10,7 +10,7 @@ namespace BlueTropicalFish.Models
     {
         public string Name { get; set; }
         public string Uuid { get; set; }
-        public string Rssi { get; set; }
+        public int Rssi { get; set; }
         public ImageSource Img { get; set; }
 
         public PeripheralDevice(IScanResult result)
@@ -19,7 +19,7 @@ namespace BlueTropicalFish.Models
 
             Name = result.Device.Name;
             Uuid = result.Device.Uuid.ToString();
-            Rssi = "RSSI: " + result.Rssi.ToString();
+            Rssi = result.Rssi;
         }
     }
 }

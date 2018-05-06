@@ -17,9 +17,16 @@ namespace BlueTropicalFish.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
+        public IDisposable scan;
         public DelegateCommand ScanCommand { get; set; }
-
         public ObservableCollection<PeripheralDevice> ScanedDevices { get; set; }
+
+        private bool isScanning = false;
+        public bool IsScanning
+        {
+            get { return isScanning; }
+            set { SetProperty(ref isScanning, value); }
+        }
 
         public MainPageViewModel(INavigationService navigationService) 
             : base (navigationService)
@@ -31,12 +38,23 @@ namespace BlueTropicalFish.ViewModels
 
         public void Scan()
         {
-            CrossBleAdapter.Current.Scan().Subscribe(result =>
+            if(IsScanning == true)
             {
-                Device.BeginInvokeOnMainThread(() => {
-                    AddDevice(result);
+                scan?.Dispose();
+                IsScanning = false;
+            }
+            else
+            {
+                ScanedDevices.Clear();
+                IsScanning = true;
+
+                scan = CrossBleAdapter.Current.Scan().Subscribe(result =>
+                {
+                    Device.BeginInvokeOnMainThread(() => {
+                        AddDevice(result);
+                    });
                 });
-            });
+            }
         }
 
         public void AddDevice(IScanResult result)
@@ -46,13 +64,13 @@ namespace BlueTropicalFish.ViewModels
 
             foreach(var device in ScanedDevices)
             {
-                if (device.Uuid == result.Device.Uuid.ToString())
+                if (device.Uuid.Equals(result.Device.Uuid.ToString()))
                 {
                     isExited = true;
                     ScanedDevices.RemoveAt(index);
 
                     var d = new PeripheralDevice(result);
-                    ScanedDevices.Add(d);
+                    ScanedDevices.Insert(index, d);
                     break;
                 }
                 index++;
