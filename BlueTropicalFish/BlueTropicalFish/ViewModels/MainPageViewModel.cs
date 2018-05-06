@@ -10,6 +10,7 @@ using Xamarin.Forms;
 using Plugin.BluetoothLE;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using BlueTropicalFish.Models;
 
 
 namespace BlueTropicalFish.ViewModels
@@ -50,12 +51,8 @@ namespace BlueTropicalFish.ViewModels
                     isExited = true;
                     ScanedDevices.RemoveAt(index);
 
-                    var d = new PeripheralDevice();
-                    d.Name = result.Device.Name;
-                    d.Uuid = result.Device.Uuid.ToString();
-                    d.Rssi = "RSSI: " + result.Rssi.ToString();
+                    var d = new PeripheralDevice(result);
                     ScanedDevices.Add(d);
-
                     break;
                 }
                 index++;
@@ -63,27 +60,9 @@ namespace BlueTropicalFish.ViewModels
 
             if(isExited == false)
             {
-                var d = new PeripheralDevice();
-                d.Name = result.Device.Name;
-                d.Uuid = result.Device.Uuid.ToString();
-                d.Rssi = "RSSI: " + result.Rssi.ToString();
-                
+                var d = new PeripheralDevice(result);
                 ScanedDevices.Add(d);
             }
-        }
-    }
-
-
-    public class PeripheralDevice
-    {
-        public string Name { get; set; }
-        public string Uuid { get; set; }
-        public string Rssi { get; set; }
-        public ImageSource Img { get; set; }
-
-        public PeripheralDevice()
-        {
-            Img = ImageSource.FromFile("bt.png");
         }
     }
 }
