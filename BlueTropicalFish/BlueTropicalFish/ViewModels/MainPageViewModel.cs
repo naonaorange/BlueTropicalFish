@@ -20,45 +20,65 @@ namespace BlueTropicalFish.ViewModels
 
         public ObservableCollection<PeripheralDevice> ScanedDevices { get; set; }
 
-        private string debugString;
-        public string DebugString
-        {
-            get { return debugString; }
-            set { SetProperty(ref debugString, value); }
-        }
-
         public MainPageViewModel(INavigationService navigationService) 
             : base (navigationService)
         {
-            Title = "Main Page";
-            DebugString = "Debug";
+            Title = "Scan Page";
             ScanCommand = new DelegateCommand(Scan);
-
             ScanedDevices = new ObservableCollection<PeripheralDevice>();
-            var d = new PeripheralDevice();
-            d.Name = "hoge";
-            d.Detail = "detail";
-            ScanedDevices.Add(d);
         }
 
         public void Scan()
         {
             CrossBleAdapter.Current.Scan().Subscribe(result =>
             {
-                DebugString = result.Device.Name;
-                
-                /*
                 Device.BeginInvokeOnMainThread(() => {
+                    AddDevice(result);
                 });
-                */ 
             });
         }
+
+        public void AddDevice(IScanResult result)
+        {
+            bool isExited = false;
+            int index = 0;
+
+            foreach(var device in ScanedDevices)
+            {
+                if (device.Uuid == result.Device.Uuid.ToString())
+                {
+                    isExited = true;
+                    ScanedDevices.RemoveAt(index);
+
+                    var d = new PeripheralDevice();
+                    d.Name = result.Device.Name;
+                    d.Uuid = result.Device.Uuid.ToString();
+                    d.Rssi = "RSSI: " + result.Rssi.ToString();
+                    ScanedDevices.Add(d);
+
+                    break;
+                }
+                index++;
+            }
+
+            if(isExited == false)
+            {
+                var d = new PeripheralDevice();
+                d.Name = result.Device.Name;
+                d.Uuid = result.Device.Uuid.ToString();
+                d.Rssi = "RSSI: " + result.Rssi.ToString();
+                
+                ScanedDevices.Add(d);
+            }
+        }
     }
+
 
     public class PeripheralDevice
     {
         public string Name { get; set; }
-        public string Detail { get; set; }
+        public string Uuid { get; set; }
+        public string Rssi { get; set; }
         public ImageSource Img { get; set; }
 
         public PeripheralDevice()

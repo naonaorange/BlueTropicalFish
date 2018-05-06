@@ -3,26 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BlueTropicalFish.Views.MainPage"
              Title="{Binding Title}">
-
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <Label Text="Welcome to Xamarin Forms and Prism!" />
         <Button Text="Scan" Command="{Binding ScanCommand}"/>
         <ListView ItemsSource="{Binding ScanedDevices}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <!--<ImageCell Text="{Binding Name}" Detail="{Binding Detail}" ImageSource="{Binding Img}" />-->
                     <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <Image Source="{Binding Img}" />
-                            <StackLayout Orientation="Vertical">
-                                <Label Text="{Binding Name}" />
-                                <Label Text="{Binding Detail}" />
+                        <Frame OutlineColor="Gray">
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="{Binding Img}" />
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="{Binding Name}" />
+                                    <Label Text="{Binding Uuid}" />
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical" HorizontalOptions="EndAndExpand">
+                                    <Label Text="{Binding Rssi}" />
+                                </StackLayout>
                             </StackLayout>
-                            <StackLayout Orientation="Vertical" HorizontalOptions="EndAndExpand">
-                                <Label Text="RSSI" />
-                                <Label Text="RSSI" />
-                            </StackLayout>
-                        </StackLayout>
+                        </Frame>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
