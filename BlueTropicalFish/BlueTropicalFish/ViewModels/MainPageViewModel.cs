@@ -10,7 +10,6 @@ using Xamarin.Forms;
 using Plugin.BluetoothLE;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using BlueTropicalFish.Models;
 
 
 namespace BlueTropicalFish.ViewModels
@@ -19,7 +18,7 @@ namespace BlueTropicalFish.ViewModels
     {
         public IDisposable scan;
         public DelegateCommand ScanCommand { get; set; }
-        public ObservableCollection<PeripheralDevice> ScanedDevices { get; set; }
+        public ObservableCollection<PeripheralDeviceViewModel> ScanedDevices { get; set; }
 
         private bool isScanning = false;
         public bool IsScanning
@@ -33,7 +32,7 @@ namespace BlueTropicalFish.ViewModels
         {
             Title = "Scan Page";
             ScanCommand = new DelegateCommand(Scan);
-            ScanedDevices = new ObservableCollection<PeripheralDevice>();
+            ScanedDevices = new ObservableCollection<PeripheralDeviceViewModel>();
 
             this.Scan();
         }
@@ -69,10 +68,7 @@ namespace BlueTropicalFish.ViewModels
                 if (device.Uuid.Equals(result.Device.Uuid.ToString()))
                 {
                     isExited = true;
-                    ScanedDevices.RemoveAt(index);
-
-                    var d = new PeripheralDevice(result);
-                    ScanedDevices.Insert(index, d);
+                    device.Update(result);
                     break;
                 }
                 index++;
@@ -80,7 +76,7 @@ namespace BlueTropicalFish.ViewModels
 
             if(isExited == false)
             {
-                var d = new PeripheralDevice(result);
+                var d = new PeripheralDeviceViewModel(result);
                 ScanedDevices.Add(d);
             }
         }
