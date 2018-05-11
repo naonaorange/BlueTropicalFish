@@ -34,6 +34,8 @@ namespace BlueTropicalFish.ViewModels
             Title = "Scan Page";
             ScanCommand = new DelegateCommand(Scan);
             ScanedDevices = new ObservableCollection<PeripheralDevice>();
+
+            this.Scan();
         }
 
         public void Scan()
