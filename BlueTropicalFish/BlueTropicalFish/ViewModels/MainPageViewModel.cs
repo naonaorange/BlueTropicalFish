@@ -10,7 +10,7 @@ using Xamarin.Forms;
 using Plugin.BluetoothLE;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-
+using BlueTropicalFish.Views;
 
 namespace BlueTropicalFish.ViewModels
 {
@@ -36,6 +36,14 @@ namespace BlueTropicalFish.ViewModels
 
             this.Scan();
         }
+
+        public Command<PeripheralDeviceViewModel> ItemSelectedCommand =>
+        new Command<PeripheralDeviceViewModel>(device =>
+        {
+            var parameter = new NavigationParameters();
+            parameter.Add("device", device.Name);
+            base.NavigationService.NavigateAsync(nameof(DeviceDetailPage), parameter);
+        });
 
         public void Scan()
         {
