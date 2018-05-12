@@ -26,7 +26,7 @@
                             <Image Source="{Binding Img}" />
                             <StackLayout Orientation="Vertical">
                                 <Label Text="{Binding Name}" TextColor="DodgerBlue" FontAttributes="Bold"/>
-                                <Label Text="{Binding Uuid}, StringFormat='UUID: {0}'}" />
+                                <Label Text="{Binding Uuid, StringFormat='UUID: {0}'}" />
                             </StackLayout>
                             <StackLayout Orientation="Vertical" HorizontalOptions="EndAndExpand">
                                 <Label Text="{Binding Rssi, StringFormat='RSSI: {0}'}" />

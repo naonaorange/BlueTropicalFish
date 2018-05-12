@@ -4,17 +4,19 @@ using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Xamarin.Forms;
 
 namespace BlueTropicalFish.ViewModels
 {
 	public class DeviceDetailPageViewModel : ViewModelBase
 	{
-        private string debug;
-        public string Debug
+        private DeviceViewModel device;
+        public DeviceViewModel Device
         {
-            get { return debug; }
-            set { SetProperty(ref debug, value); }
+            get { return device; }
+            set { SetProperty(ref device, value); }
         }
+
         public DeviceDetailPageViewModel(INavigationService navigationService)
             : base(navigationService)
         {
@@ -23,7 +25,7 @@ namespace BlueTropicalFish.ViewModels
 
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
-            Debug = (string)parameters["device"];
+            Device = (DeviceViewModel)parameters["device"];
         }
     }
 }

@@ -4,5 +4,13 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="BlueTropicalFish.Views.DeviceDetailPage">
-    <Label Text="{Binding Debug}" />
+
+    <StackLayout HorizontalOptions="StartAndExpand"  VerticalOptions="StartAndExpand">
+        <Label Text="{Binding Device.Name, StringFormat='Name:  {0}'}" TextColor="DodgerBlue" FontAttributes="Bold"/>
+        <Label Text="{Binding Device.Uuid, StringFormat='UUID:  {0}'}" />
+        <Label Text="{Binding Device.Rssi, StringFormat='RSSI:  {0}'}" />
+        <Label Text="{Binding Device.Status, StringFormat='Connect Status:  {0}'}" />
+        <Label Text="{Binding Device.LocalName, StringFormat='Local Name:  {0}'}" />
+        <Label Text="{Binding Device.Connectable, StringFormat='Connectable:  {0}'}" />
+    </StackLayout>
 </ContentPage>

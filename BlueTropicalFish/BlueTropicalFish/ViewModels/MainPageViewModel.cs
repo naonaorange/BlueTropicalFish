@@ -27,6 +27,7 @@ namespace BlueTropicalFish.ViewModels
             set { SetProperty(ref isScanning, value); }
         }
 
+
         public MainPageViewModel(INavigationService navigationService) 
             : base (navigationService)
         {
@@ -41,7 +42,7 @@ namespace BlueTropicalFish.ViewModels
         new Command<DeviceViewModel>(device =>
         {
             var parameter = new NavigationParameters();
-            parameter.Add("device", device.Name);
+            parameter.Add("device", device);
             base.NavigationService.NavigateAsync(nameof(DeviceDetailPage), parameter);
         });
 

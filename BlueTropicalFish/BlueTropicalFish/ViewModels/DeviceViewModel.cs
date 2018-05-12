@@ -47,12 +47,45 @@ namespace BlueTropicalFish.ViewModels
             set { SetProperty(ref img, value); }
         }
 
+        private string status;
+        public string Status
+        {
+            get { return status; }
+            set { SetProperty(ref status, value); }
+        }
+
+        public void SetStatus(ConnectionStatus s)
+        {
+            if (s == ConnectionStatus.Disconnected) Status = "Disconnected";
+            else if (s == ConnectionStatus.Disconnecting) Status = "Disconnecting";
+            else if (s == ConnectionStatus.Connected) Status = "Connected";
+            else Status = "Connecting";
+        }
+
+        private string localName;
+        public string LocalName
+        {
+            get { return localName; }
+            set { SetProperty(ref localName, value); }
+        }
+
+        private string connectable;
+        public string Connectable
+        {
+            get { return connectable; }
+            set { SetProperty(ref connectable, value); }
+        }
+
+        public void SetConnectable(bool b)
+        {
+            if (b == true) Connectable = "Connectable";
+            else Connectable = "Disconnectable";
+        }
+
         public DeviceViewModel(IScanResult result)
         {
-            Img = ImageSource.FromFile("bt.png");
-            Name = result.Device.Name;
-            Uuid = result.Device.Uuid.ToString();
-            Rssi = result.Rssi;
+            this.Img = ImageSource.FromFile("bt.png");
+            this.Update(result);
         }
 
         public void Update(IScanResult result)
@@ -60,6 +93,9 @@ namespace BlueTropicalFish.ViewModels
             this.Name = result.Device.Name;
             this.Uuid = result.Device.Uuid.ToString();
             this.Rssi = result.Rssi;
+            this.SetStatus(result.Device.Status);
+            this.LocalName = result.AdvertisementData.LocalName;
+            this.SetConnectable(result.AdvertisementData.IsConnectable);
         }
     }
 }
