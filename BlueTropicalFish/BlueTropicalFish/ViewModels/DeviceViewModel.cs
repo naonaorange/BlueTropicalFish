@@ -7,7 +7,7 @@ using Plugin.BluetoothLE;
 
 namespace BlueTropicalFish.ViewModels
 {
-    public class PeripheralDeviceViewModel: BindableBase
+    public class DeviceViewModel: BindableBase
     {
         private string name;
         public string Name
@@ -47,7 +47,7 @@ namespace BlueTropicalFish.ViewModels
             set { SetProperty(ref img, value); }
         }
 
-        public PeripheralDeviceViewModel(IScanResult result)
+        public DeviceViewModel(IScanResult result)
         {
             Img = ImageSource.FromFile("bt.png");
             Name = result.Device.Name;

@@ -18,7 +18,7 @@ namespace BlueTropicalFish.ViewModels
     {
         public IDisposable scan;
         public DelegateCommand ScanCommand { get; set; }
-        public ObservableCollection<PeripheralDeviceViewModel> ScanedDevices { get; set; }
+        public ObservableCollection<DeviceViewModel> ScanedDevices { get; set; }
 
         private bool isScanning = false;
         public bool IsScanning
@@ -32,13 +32,13 @@ namespace BlueTropicalFish.ViewModels
         {
             Title = "Scan Page";
             ScanCommand = new DelegateCommand(Scan);
-            ScanedDevices = new ObservableCollection<PeripheralDeviceViewModel>();
+            ScanedDevices = new ObservableCollection<DeviceViewModel>();
 
             this.Scan();
         }
 
-        public Command<PeripheralDeviceViewModel> ItemSelectedCommand =>
-        new Command<PeripheralDeviceViewModel>(device =>
+        public Command<DeviceViewModel> ItemSelectedCommand =>
+        new Command<DeviceViewModel>(device =>
         {
             var parameter = new NavigationParameters();
             parameter.Add("device", device.Name);
@@ -84,7 +84,7 @@ namespace BlueTropicalFish.ViewModels
 
             if(isExited == false)
             {
-                var d = new PeripheralDeviceViewModel(result);
+                var d = new DeviceViewModel(result);
                 ScanedDevices.Add(d);
             }
         }
