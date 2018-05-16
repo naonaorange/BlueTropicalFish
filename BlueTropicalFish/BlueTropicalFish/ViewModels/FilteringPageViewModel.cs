@@ -38,7 +38,7 @@ namespace BlueTropicalFish.ViewModels
 
         public void Reset()
         {
-            FilteringParam = new DeviceViewModel();
+            FilteringParam.SetDefaultValue();
         }
 	}
 }

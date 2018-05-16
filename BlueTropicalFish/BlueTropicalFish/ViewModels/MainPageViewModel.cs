@@ -116,8 +116,6 @@ namespace BlueTropicalFish.ViewModels
                     }
                 }
             }
-
-            Title = filteringParam.Name;
         }
 
         public void EnableFiltering()
@@ -133,7 +131,6 @@ namespace BlueTropicalFish.ViewModels
                     {
                         deleteIndex.Add(index);
                     }
-
                     index++;
                 }
 
@@ -158,9 +155,17 @@ namespace BlueTropicalFish.ViewModels
 
             if (filter.IsEmptyData()) return true;
 
+            var empty = new DeviceViewModel();
+
             if(device.Name.IndexOf(filter.Name, StringComparison.OrdinalIgnoreCase) >= 0)
             {
-                isFiltering = true;
+                if(device.Uuid.IndexOf(filter.Uuid, StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    if(device.Rssi > filter.Rssi)
+                    {
+                        isFiltering = true;
+                    }
+                }
             }
 
             return isFiltering;

@@ -9,7 +9,8 @@ namespace BlueTropicalFish.ViewModels
 {
     public class DeviceViewModel: BindableBase
     {
-        private string name = "";
+        public const string DEFAULT_NAME = "";
+        private string name = DEFAULT_NAME;
         public string Name
         {
             get { return name; }
@@ -26,28 +27,24 @@ namespace BlueTropicalFish.ViewModels
             }
         }
 
-        private string uuid = "";
+        public const string DEFAULT_UUID = "";
+        private string uuid = DEFAULT_UUID;
         public string Uuid
         {
             get { return uuid; }
             set { SetProperty(ref uuid, value); }
         }
 
-        private int rssi = -100;
+        public const int DEFAULT_RSSI = -100;
+        private int rssi = DEFAULT_RSSI;
         public int Rssi
         {
             get { return rssi; }
             set { SetProperty(ref rssi, value); }
         }
 
-        private ImageSource img;
-        public ImageSource Img
-        {
-            get { return img; }
-            set { SetProperty(ref img, value); }
-        }
-
-        private string status;
+        public const string DEFAULT_STATUS = "Disconnected";
+        private string status = DEFAULT_STATUS;
         public string Status
         {
             get { return status; }
@@ -62,14 +59,16 @@ namespace BlueTropicalFish.ViewModels
             else Status = "Connecting";
         }
 
-        private string localName = "";
+        public const string DEFAULT_LOCAL_NAME = "";
+        private string localName = DEFAULT_LOCAL_NAME;
         public string LocalName
         {
             get { return localName; }
             set { SetProperty(ref localName, value); }
         }
 
-        private string connectable;
+        public const string DEFAULT_CONNECTABLE = "Disconnectable";
+        private string connectable = DEFAULT_CONNECTABLE;
         public string Connectable
         {
             get { return connectable; }
@@ -82,10 +81,16 @@ namespace BlueTropicalFish.ViewModels
             else Connectable = "Disconnectable";
         }
 
+        private ImageSource img;
+        public ImageSource Img
+        {
+            get { return img; }
+            set { SetProperty(ref img, value); }
+        }
 
         public DeviceViewModel()
         {
-            this.Img = ImageSource.FromFile("bt.png");
+            Img = ImageSource.FromFile("bt.png");
             SetStatus(ConnectionStatus.Disconnected);
             SetConnectable(false);
 
@@ -93,7 +98,7 @@ namespace BlueTropicalFish.ViewModels
 
         public DeviceViewModel(IScanResult result)
         {
-            this.Img = ImageSource.FromFile("bt.png");
+            Img = ImageSource.FromFile("bt.png");
             this.Update(result);
         }
 
@@ -101,17 +106,17 @@ namespace BlueTropicalFish.ViewModels
         {
             bool isEmpty = false;
 
-            if (Name.Equals(""))
+            if (Name.Equals(DEFAULT_NAME))
             {
-                if (Uuid.Equals(""))
+                if (Uuid.Equals(DEFAULT_UUID))
                 {
-                    if(Rssi == -100)
+                    if(Rssi == DEFAULT_RSSI)
                     {
-                        if (Status.Equals("Disconnected"))
+                        if (Status.Equals(DEFAULT_STATUS))
                         {
-                            if (LocalName.Equals(""))
+                            if (LocalName.Equals(DEFAULT_LOCAL_NAME))
                             {
-                                if (Connectable.Equals("Disconnectable"))
+                                if (Connectable.Equals(DEFAULT_CONNECTABLE))
                                 {
                                     isEmpty = true;
                                 }
@@ -123,13 +128,23 @@ namespace BlueTropicalFish.ViewModels
             return isEmpty;
         }
 
+        public void SetDefaultValue()
+        {
+            Name = DEFAULT_NAME;
+            Uuid = DEFAULT_UUID;
+            Rssi = DEFAULT_RSSI;
+            Status = DEFAULT_STATUS;
+            LocalName = DEFAULT_LOCAL_NAME;
+            Connectable = DEFAULT_CONNECTABLE;
+        }
+
         public void Update(IScanResult result)
         {
-            this.Name = result.Device.Name;
-            this.Uuid = result.Device.Uuid.ToString();
-            this.Rssi = result.Rssi;
+            Name = result.Device.Name;
+            Uuid = result.Device.Uuid.ToString();
+            Rssi = result.Rssi;
             this.SetStatus(result.Device.Status);
-            this.LocalName = result.AdvertisementData.LocalName;
+            LocalName = result.AdvertisementData.LocalName;
             this.SetConnectable(result.AdvertisementData.IsConnectable);
         }
     }
