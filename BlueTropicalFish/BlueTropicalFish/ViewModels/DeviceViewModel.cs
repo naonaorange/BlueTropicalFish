@@ -9,7 +9,7 @@ namespace BlueTropicalFish.ViewModels
 {
     public class DeviceViewModel: BindableBase
     {
-        private string name;
+        private string name = "";
         public string Name
         {
             get { return name; }
@@ -26,14 +26,14 @@ namespace BlueTropicalFish.ViewModels
             }
         }
 
-        private string uuid;
+        private string uuid = "";
         public string Uuid
         {
             get { return uuid; }
             set { SetProperty(ref uuid, value); }
         }
 
-        private int rssi;
+        private int rssi = -100;
         public int Rssi
         {
             get { return rssi; }
@@ -62,7 +62,7 @@ namespace BlueTropicalFish.ViewModels
             else Status = "Connecting";
         }
 
-        private string localName;
+        private string localName = "";
         public string LocalName
         {
             get { return localName; }
@@ -82,10 +82,45 @@ namespace BlueTropicalFish.ViewModels
             else Connectable = "Disconnectable";
         }
 
+
+        public DeviceViewModel()
+        {
+            this.Img = ImageSource.FromFile("bt.png");
+            SetStatus(ConnectionStatus.Disconnected);
+            SetConnectable(false);
+
+        }
+
         public DeviceViewModel(IScanResult result)
         {
             this.Img = ImageSource.FromFile("bt.png");
             this.Update(result);
+        }
+
+        public bool IsEmptyData()
+        {
+            bool isEmpty = false;
+
+            if (Name.Equals(""))
+            {
+                if (Uuid.Equals(""))
+                {
+                    if(Rssi == -100)
+                    {
+                        if (Status.Equals("Disconnected"))
+                        {
+                            if (LocalName.Equals(""))
+                            {
+                                if (Connectable.Equals("Disconnectable"))
+                                {
+                                    isEmpty = true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return isEmpty;
         }
 
         public void Update(IScanResult result)

@@ -16,9 +16,15 @@ namespace BlueTropicalFish.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
-        public IDisposable scan;
         public DelegateCommand ScanCommand { get; set; }
+        public DelegateCommand DebCommand { get; set; }
+        public DelegateCommand EnableFilteringCommand { get; set; }
+        public DelegateCommand SetFilteringParamCommand { get; set; }
+        
+
+        public IDisposable scan;
         public ObservableCollection<DeviceViewModel> ScanedDevices { get; set; }
+        private DeviceViewModel filteringParam;
 
         private bool isScanning = false;
         public bool IsScanning
@@ -27,13 +33,24 @@ namespace BlueTropicalFish.ViewModels
             set { SetProperty(ref isScanning, value); }
         }
 
+        private bool isFiltering = false;
+        public bool IsFiltering
+        {
+            get { return isFiltering; }
+            set { SetProperty(ref isFiltering, value); }
+        }
+
 
         public MainPageViewModel(INavigationService navigationService) 
             : base (navigationService)
         {
             Title = "Scan Page";
             ScanCommand = new DelegateCommand(Scan);
+            EnableFilteringCommand = new DelegateCommand(EnableFiltering);
+            SetFilteringParamCommand = new DelegateCommand(SetFilteringParam);
+
             ScanedDevices = new ObservableCollection<DeviceViewModel>();
+            filteringParam = new DeviceViewModel();
 
             this.Scan();
         }
@@ -61,13 +78,13 @@ namespace BlueTropicalFish.ViewModels
                 scan = CrossBleAdapter.Current.Scan().Subscribe(result =>
                 {
                     Device.BeginInvokeOnMainThread(() => {
-                        AddDevice(result);
+                        this.AddDevice(result);
                     });
                 });
             }
         }
 
-        public void AddDevice(IScanResult result)
+        private void AddDevice(IScanResult result)
         {
             bool isExited = false;
             int index = 0;
@@ -83,11 +100,70 @@ namespace BlueTropicalFish.ViewModels
                 index++;
             }
 
-            if(isExited == false)
+            if (isExited == false)
             {
-                var d = new DeviceViewModel(result);
-                ScanedDevices.Add(d);
+                if (IsFiltering == false)
+                {
+                    var d = new DeviceViewModel(result);
+                    ScanedDevices.Add(d);
+                }
+                else
+                {
+                    var d = new DeviceViewModel(result);
+                    if (this.IsMeetFilteringCondition(d, filteringParam))
+                    {
+                        ScanedDevices.Add(d);
+                    }
+                }
             }
+
+            Title = filteringParam.Name;
+        }
+
+        public void EnableFiltering()
+        {
+            if (IsFiltering)
+            {
+                int index = 0;
+                var deleteIndex = new List<int>();
+
+                foreach(var device in ScanedDevices)
+                {
+                    if(!this.IsMeetFilteringCondition(device, filteringParam))
+                    {
+                        deleteIndex.Add(index);
+                    }
+
+                    index++;
+                }
+
+                deleteIndex.Reverse();
+                foreach(var i in deleteIndex)
+                {
+                    ScanedDevices.RemoveAt(i);
+                }
+            }
+        }
+
+        public void SetFilteringParam()
+        {
+            var parameter = new NavigationParameters();
+            parameter.Add("filteringParam", filteringParam);
+            base.NavigationService.NavigateAsync(nameof(FilteringPage), parameter);
+        }
+
+        private bool IsMeetFilteringCondition(DeviceViewModel device, DeviceViewModel filter)
+        {
+            bool isFiltering = false;
+
+            if (filter.IsEmptyData()) return true;
+
+            if(device.Name.IndexOf(filter.Name, StringComparison.OrdinalIgnoreCase) >= 0)
+            {
+                isFiltering = true;
+            }
+
+            return isFiltering;
         }
     }
 }

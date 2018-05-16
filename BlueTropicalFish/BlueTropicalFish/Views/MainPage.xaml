@@ -15,6 +15,17 @@
                 </DataTrigger>
             </Button.Triggers>
         </Button>
+        
+        <Button Command="{Binding SetFilteringParamCommand}" Text="Set Filter Parameter" />
+        
+        <StackLayout Orientation="Horizontal" >
+            <Label Text="Show Only Filtering Devices" />
+            <Switch IsToggled="{Binding IsFiltering}" >
+                <Switch.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding EnableFilteringCommand}" />
+                </Switch.Behaviors>
+            </Switch>
+        </StackLayout>
         <ListView ItemsSource="{Binding ScanedDevices}" SeparatorColor="Gray">
             <ListView.Behaviors>
                 <behaviors:EventToCommandBehavior EventName="ItemSelected" Command="{Binding ItemSelectedCommand}" EventArgsParameterPath="SelectedItem" />
