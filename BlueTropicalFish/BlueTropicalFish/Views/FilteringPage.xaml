@@ -5,22 +5,13 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="BlueTropicalFish.Views.FilteringPage">
     <StackLayout Orientation="Vertical"  >
-        <Label Text="{Binding DebugString}" />
-        <StackLayout Orientation="Horizontal" >
-            <Label Text="Name:" TextColor="DodgerBlue" FontAttributes="Bold"/>
-            <Entry Text="{Binding FilteringParam.Name, Mode=TwoWay}" />
-        </StackLayout>
-        <StackLayout Orientation="Horizontal" >
-            <Label Text="UUID:" />
-            <Entry Text="{Binding FilteringParam.Uuid, Mode=TwoWay}" />
-        </StackLayout>
-        <StackLayout Orientation="Horizontal" >
-            <Label Text="RSSI:" />
-            <Entry Text="{Binding FilteringParam.Rssi, Mode=TwoWay}" />
-        </StackLayout>
-        <Label Text="Connect Status:" />
-        <Label Text="Local Name:" />
-        <Label Text="Connectable:" />
+        <Label Text="Name:" TextColor="DodgerBlue" FontAttributes="Bold"/>
+        <Entry Text="{Binding FilteringParam.Name, Mode=TwoWay}" />
+        <Label Text="UUID:" FontAttributes="Bold"/>
+        <Entry Text="{Binding FilteringParam.Uuid, Mode=TwoWay}" />
+        <Label Text="RSSI:" FontAttributes="Bold"/>
+        <Entry Text="{Binding FilteringParam.Rssi, Mode=TwoWay}" />
+        <Label Text="" />
         <Button Command="{Binding ResetCommand}" Text="Reset filtering" />
     </StackLayout>
 </ContentPage>
