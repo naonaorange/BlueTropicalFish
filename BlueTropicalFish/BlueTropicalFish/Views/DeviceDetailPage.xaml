@@ -7,16 +7,33 @@
 
     <StackLayout HorizontalOptions="StartAndExpand"  VerticalOptions="StartAndExpand">
         <Label Text="Name:" TextColor="DodgerBlue" FontAttributes="Bold"/>
-        <Label Text="{Binding Device.Name}" TextColor="DodgerBlue" FontAttributes="Bold"/>
+        <Frame OutlineColor="Gray" >
+            <Label Text="{Binding Device.Name}" TextColor="DodgerBlue" FontAttributes="Bold" />
+        </Frame>
+
         <Label Text="RSSI:" FontAttributes="Bold" />
-        <Label Text="{Binding Device.Rssi}"  />
+        <Frame OutlineColor="Gray" >
+            <Label Text="{Binding Device.Rssi}"  />
+        </Frame>
+
         <Label Text="UUID:" FontAttributes="Bold"/>
-        <Label Text="{Binding Device.Uuid}" />
+        <Frame OutlineColor="Gray" >
+            <Label Text="{Binding Device.Uuid}" />
+        </Frame>
+
         <Label Text="Connect Status:" FontAttributes="Bold"/>
-        <Label Text="{Binding Device.Status}" />
+        <Frame OutlineColor="Gray" >
+            <Label Text="{Binding Device.Status}" />
+        </Frame>
+
         <Label Text="Local Name:" FontAttributes="Bold"/>
-        <Label Text="{Binding Device.LocalName}" />
+        <Frame OutlineColor="Gray" >
+            <Label Text="{Binding Device.LocalName}" />
+        </Frame>
+
         <Label Text="Connectable:" FontAttributes="Bold"/>
-        <Label Text="{Binding Device.Connectable}" />
+        <Frame OutlineColor="Gray" >
+            <Label Text="{Binding Device.Connectable}" />
+        </Frame>
     </StackLayout>
 </ContentPage>

@@ -33,7 +33,7 @@
                 </Switch.Behaviors>
             </Switch>
         </StackLayout>
-        <Label Text="favorite" HorizontalOptions="EndAndExpand" />
+
         <ListView ItemsSource="{Binding ScanedDevices}" HasUnevenRows="True" SeparatorVisibility="Default" SeparatorColor="DarkBlue">
             <ListView.Behaviors>
                 <behaviors:EventToCommandBehavior EventName="ItemSelected" Command="{Binding ItemSelectedCommand}" EventArgsParameterPath="SelectedItem" />
