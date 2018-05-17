@@ -6,7 +6,7 @@
 
 # BlueTropicalFish
 
-BlueTropicalFish is a debug tools about Bluetooth Low Energy.
+BlueTropicalFish is a debug tool about Bluetooth Low Energy.
 You can see adverting device.
 
 # Install
