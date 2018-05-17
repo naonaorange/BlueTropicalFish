@@ -15,7 +15,6 @@
                 </DataTrigger>
             </Button.Triggers>
         </Button>
-        
         <Button Command="{Binding SetFilteringParamCommand}" Text="Set Filter Parameter" />
         
         <StackLayout Orientation="Horizontal" >
@@ -26,7 +25,16 @@
                 </Switch.Behaviors>
             </Switch>
         </StackLayout>
-        <ListView ItemsSource="{Binding ScanedDevices}" SeparatorColor="Gray">
+        <StackLayout Orientation="Horizontal" >
+            <Label Text="Show Only Favorite Devices" />
+            <Switch IsToggled="{Binding IsFavorite}" >
+                <Switch.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding EnableFavoriteCommand}" />
+                </Switch.Behaviors>
+            </Switch>
+        </StackLayout>
+        <Label Text="favorite" HorizontalOptions="EndAndExpand" />
+        <ListView ItemsSource="{Binding ScanedDevices}" HasUnevenRows="True" SeparatorVisibility="Default" SeparatorColor="DarkBlue">
             <ListView.Behaviors>
                 <behaviors:EventToCommandBehavior EventName="ItemSelected" Command="{Binding ItemSelectedCommand}" EventArgsParameterPath="SelectedItem" />
             </ListView.Behaviors>
@@ -37,10 +45,11 @@
                             <Image Source="{Binding Img}" />
                             <StackLayout Orientation="Vertical">
                                 <Label Text="{Binding Name}" TextColor="DodgerBlue" FontAttributes="Bold"/>
-                                <Label Text="{Binding Uuid, StringFormat='UUID: {0}'}" />
+                                <Label Text="{Binding Rssi, StringFormat='RSSI: {0}'}" />
+                                <Label Text="{Binding Connectable}" />
                             </StackLayout>
                             <StackLayout Orientation="Vertical" HorizontalOptions="EndAndExpand">
-                                <Label Text="{Binding Rssi, StringFormat='RSSI: {0}'}" />
+                                <Switch IsToggled="{Binding IsFavorite}" />
                             </StackLayout>
                         </StackLayout>
                     </ViewCell>

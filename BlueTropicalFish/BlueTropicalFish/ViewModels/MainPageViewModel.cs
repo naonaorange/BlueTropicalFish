@@ -19,6 +19,7 @@ namespace BlueTropicalFish.ViewModels
         public DelegateCommand ScanCommand { get; set; }
         public DelegateCommand DebCommand { get; set; }
         public DelegateCommand EnableFilteringCommand { get; set; }
+        public DelegateCommand EnableFavoriteCommand { get; set; }
         public DelegateCommand SetFilteringParamCommand { get; set; }
         
 
@@ -40,6 +41,13 @@ namespace BlueTropicalFish.ViewModels
             set { SetProperty(ref isFiltering, value); }
         }
 
+        private bool isFavorite = false;
+        public bool IsFavorite
+        {
+            get { return isFavorite; }
+            set { SetProperty(ref isFavorite, value); }
+        }
+
 
         public MainPageViewModel(INavigationService navigationService) 
             : base (navigationService)
@@ -47,6 +55,7 @@ namespace BlueTropicalFish.ViewModels
             Title = "Scan Page";
             ScanCommand = new DelegateCommand(Scan);
             EnableFilteringCommand = new DelegateCommand(EnableFiltering);
+            EnableFavoriteCommand = new DelegateCommand(EnableFavorite);
             SetFilteringParamCommand = new DelegateCommand(SetFilteringParam);
 
             ScanedDevices = new ObservableCollection<DeviceViewModel>();
@@ -102,6 +111,8 @@ namespace BlueTropicalFish.ViewModels
 
             if (isExited == false)
             {
+                if (IsFavorite) return;
+
                 if (IsFiltering == false)
                 {
                     var d = new DeviceViewModel(result);
@@ -169,6 +180,30 @@ namespace BlueTropicalFish.ViewModels
             }
 
             return isFiltering;
+        }
+
+        public void EnableFavorite()
+        {
+            if (IsFavorite)
+            {
+                int index = 0;
+                var deleteIndex = new List<int>();
+
+                foreach(var device in ScanedDevices)
+                {
+                    if(!device.IsFavorite)
+                    {
+                        deleteIndex.Add(index);
+                    }
+                    index++;
+                }
+
+                deleteIndex.Reverse();
+                foreach(var i in deleteIndex)
+                {
+                    ScanedDevices.RemoveAt(i);
+                }
+            }
         }
     }
 }

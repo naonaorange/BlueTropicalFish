@@ -81,6 +81,14 @@ namespace BlueTropicalFish.ViewModels
             else Connectable = "Disconnectable";
         }
 
+        public const bool DEFAULT_IS_FAVORITE = false;
+        private bool isFavorite = DEFAULT_IS_FAVORITE;
+        public bool IsFavorite
+        {
+            get { return isFavorite; }
+            set { SetProperty(ref isFavorite, value); }
+        }
+
         private ImageSource img;
         public ImageSource Img
         {
@@ -136,6 +144,7 @@ namespace BlueTropicalFish.ViewModels
             Status = DEFAULT_STATUS;
             LocalName = DEFAULT_LOCAL_NAME;
             Connectable = DEFAULT_CONNECTABLE;
+            IsFavorite = DEFAULT_IS_FAVORITE;
         }
 
         public void Update(IScanResult result)

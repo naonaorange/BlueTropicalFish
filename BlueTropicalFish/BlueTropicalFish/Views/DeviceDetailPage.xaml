@@ -6,11 +6,17 @@
              x:Class="BlueTropicalFish.Views.DeviceDetailPage">
 
     <StackLayout HorizontalOptions="StartAndExpand"  VerticalOptions="StartAndExpand">
-        <Label Text="{Binding Device.Name, StringFormat='Name:  {0}'}" TextColor="DodgerBlue" FontAttributes="Bold"/>
-        <Label Text="{Binding Device.Uuid, StringFormat='UUID:  {0}'}" />
-        <Label Text="{Binding Device.Rssi, StringFormat='RSSI:  {0}'}" />
-        <Label Text="{Binding Device.Status, StringFormat='Connect Status:  {0}'}" />
-        <Label Text="{Binding Device.LocalName, StringFormat='Local Name:  {0}'}" />
-        <Label Text="{Binding Device.Connectable, StringFormat='Connectable:  {0}'}" />
+        <Label Text="Name:" TextColor="DodgerBlue" FontAttributes="Bold"/>
+        <Label Text="{Binding Device.Name}" TextColor="DodgerBlue" FontAttributes="Bold"/>
+        <Label Text="RSSI:" FontAttributes="Bold" />
+        <Label Text="{Binding Device.Rssi}"  />
+        <Label Text="UUID:" FontAttributes="Bold"/>
+        <Label Text="{Binding Device.Uuid}" />
+        <Label Text="Connect Status:" FontAttributes="Bold"/>
+        <Label Text="{Binding Device.Status}" />
+        <Label Text="Local Name:" FontAttributes="Bold"/>
+        <Label Text="{Binding Device.LocalName}" />
+        <Label Text="Connectable:" FontAttributes="Bold"/>
+        <Label Text="{Binding Device.Connectable}" />
     </StackLayout>
 </ContentPage>
