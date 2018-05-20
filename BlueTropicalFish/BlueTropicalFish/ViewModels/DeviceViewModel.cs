@@ -89,16 +89,8 @@ namespace BlueTropicalFish.ViewModels
             set { SetProperty(ref isFavorite, value); }
         }
 
-        private ImageSource img;
-        public ImageSource Img
-        {
-            get { return img; }
-            set { SetProperty(ref img, value); }
-        }
-
         public DeviceViewModel()
         {
-            Img = ImageSource.FromFile("bt.png");
             SetStatus(ConnectionStatus.Disconnected);
             SetConnectable(false);
 
@@ -106,7 +98,6 @@ namespace BlueTropicalFish.ViewModels
 
         public DeviceViewModel(IScanResult result)
         {
-            Img = ImageSource.FromFile("bt.png");
             this.Update(result);
         }
 
