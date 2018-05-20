@@ -93,7 +93,6 @@ namespace BlueTropicalFish.ViewModels
         {
             SetStatus(ConnectionStatus.Disconnected);
             SetConnectable(false);
-
         }
 
         public DeviceViewModel(IScanResult result)
