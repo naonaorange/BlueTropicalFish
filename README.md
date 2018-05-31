@@ -12,6 +12,7 @@ You can see adverting device.
 # Install
 
 Google Play
+
 https://play.google.com/store/apps/details?id=com.naonaorange.bluetropicalfish
 
 BlueTropicalFish is supported below platform.
