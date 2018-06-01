@@ -78,7 +78,7 @@ namespace BlueTropicalFish.ViewModels
         public void SetConnectable(bool b)
         {
             if (b == true) Connectable = "Connectable";
-            else Connectable = "Disconnectable";
+            else Connectable = "Non-connectable";
         }
 
         public const bool DEFAULT_IS_FAVORITE = false;
