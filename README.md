@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="BlueTropicalFish/BlueTropicalFish.UWP/Assets/Square150x150Logo.scale-200.png" >
+  <img src="BlueTropicalFish/BlueTropicalFish.Android/Resources/mipmap-xxxhdpi/ic_launcher.png" >
 </div>
 
 -----------------
