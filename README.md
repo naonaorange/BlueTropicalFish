@@ -22,11 +22,11 @@ You can install BlueTropicalFish !!
 
 - Google Play
 
-https://play.google.com/store/apps/details?id=com.naonaorange.bluetropicalfish
+  https://play.google.com/store/apps/details?id=com.naonaorange.bluetropicalfish
 
 - Windows Store
 
-https://www.microsoft.com/en-us/p/blue-tropical-fish/9p14nwqz276h?activetab=pivot%3aoverviewtab
+  https://www.microsoft.com/en-us/p/blue-tropical-fish/9p14nwqz276h?activetab=pivot%3aoverviewtab
 
 # Development Environment
 
