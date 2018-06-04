@@ -35,3 +35,5 @@ This application use below libraries.
 
 - Prism
 - Plugin.BluetoothLE
+
+https://github.com/aritchie/bluetoothle
