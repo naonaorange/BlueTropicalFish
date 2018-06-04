@@ -34,6 +34,9 @@ BlueTropicalFish is implemented using Visual Studio 2017 and Xamarin.Forms.
 This application use below libraries.
 
 - Prism
+
+  https://github.com/PrismLibrary/Prism
+
 - Plugin.BluetoothLE
 
-https://github.com/aritchie/bluetoothle
+  https://github.com/aritchie/bluetoothle
