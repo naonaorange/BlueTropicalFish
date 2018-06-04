@@ -18,7 +18,7 @@ This application isn't supported in iOS at this time.
 - Android 6 and upper
 - Windows 10 and upper
 
-You can install BlueTropicalFish using Google Paly!!
+You can install BlueTropicalFish !!
 
 - Google Play
 
@@ -26,7 +26,7 @@ https://play.google.com/store/apps/details?id=com.naonaorange.bluetropicalfish
 
 - Windows Store
 
-(Coming Soon!!)
+https://www.microsoft.com/en-us/p/blue-tropical-fish/9p14nwqz276h?activetab=pivot%3aoverviewtab
 
 # Development Environment
 
